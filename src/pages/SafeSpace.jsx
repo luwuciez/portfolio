@@ -2,10 +2,8 @@ import PageTitle from "../components/pageTitle.jsx";
 import LinkButton from "../components/linkButton.jsx";
 
 //Assets
-import placeholder from "../assets/safespace/placeholder.png";
 import logo from "../assets/safespace/logo.png";
 import thumbnail from "../assets/safespace/mocks.png";
-// import video from "../assets/safespace/promo.mp4";
 import findings from "../assets/safespace/findings.png";
 import persona1 from "../assets/safespace/persona1.png";
 import persona2 from "../assets/safespace/persona2.png";
@@ -478,8 +476,12 @@ export default function SafeSpace() {
               className="object-cover h-full w-full"
             />
             <div className="absolute right-4 bottom-4 z-10 hidden md:flex md:flex-col gap-4">
-              <LinkButton link={video} text="Promotional Video" />
+              <LinkButton link={video} text="View Video" />
             </div>
+          </div>
+
+          <div className="md:hidden flex flex-col sm:flex-row gap-4 col-span-full">
+            <LinkButton className="w-full" link={video} text="View Video" />
           </div>
 
           <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
@@ -505,8 +507,16 @@ export default function SafeSpace() {
               className="object-cover h-full w-full"
             />
             <div className="absolute right-4 bottom-4 z-10 hidden md:flex md:flex-col gap-4">
-              <LinkButton link="https://safe-space.figma.site/" text="Marketing Website" />
+              <LinkButton link="https://safe-space.figma.site/" text="View Website" />
             </div>
+          </div>
+
+          <div className="md:hidden flex flex-col sm:flex-row gap-4 col-span-full">
+            <LinkButton
+              className="w-full"
+              link="https://safe-space.figma.site/"
+              text="View Website"
+            />
           </div>
 
           <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
