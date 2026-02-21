@@ -583,9 +583,9 @@ export default function SafeSpace() {
               </div>
               <div className="flex flex-col text-sm sm:text-base gap-2">
                 <p>
-                  The scenario depicted in the promotional video was informed by multiple real
-                  accounts gathered during the research phase. The language was intentionally left
-                  unfiltered to reflect the reality and gravity of these experiences.
+                  Bold SafeSpace stickers were produced for the final showcase. The design balances
+                  professional branding with a casual style, intended for workers to wear on their
+                  helmets.
                 </p>
               </div>
             </div>
