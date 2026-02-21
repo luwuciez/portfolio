@@ -15,8 +15,9 @@ import palette from "../assets/safespace/palette.png";
 import typography from "../assets/safespace/typography.png";
 import brochure from "../assets/safespace/brochure.png";
 import businessCard from "../assets/safespace/business-card.png";
-import promoVideo from "../assets/safespace/promoVideo.png";
+import stickers from "../assets/safespace/stickers.png";
 import website from "../assets/safespace/website.png";
+import lofis from "../assets/safespace/lofi.png";
 
 import ZoomableImage from "../components/zoomableImage.jsx";
 
@@ -469,26 +470,19 @@ export default function SafeSpace() {
             </div>
           </div>
 
-          <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-surface overflow-hidden items-center justify-center flex relative">
+          <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
             <img
-              src={promoVideo}
+              src={stickers}
               alt="Promotional video for SafeSpace"
               className="object-cover h-full w-full"
             />
-            <div className="absolute right-4 bottom-4 z-10 hidden md:flex md:flex-col gap-4">
-              <LinkButton link={video} text="View Video" />
-            </div>
-          </div>
-
-          <div className="md:hidden flex flex-col sm:flex-row gap-4 col-span-full">
-            <LinkButton className="w-full" link={video} text="View Video" />
           </div>
 
           <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
             <div className="flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full h-full">
               <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3">
                 <span className="hidden lg:inline">⏴</span>
-                <span>Promotional Video</span>
+                <span>Stickers</span>
               </div>
               <div className="flex flex-col text-sm sm:text-base gap-2">
                 <p>
@@ -532,6 +526,32 @@ export default function SafeSpace() {
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="col-span-full flex flex-col gap-4">
+            <div className="flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full h-full">
+              <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3">
+                <span>Promotional Video</span>
+              </div>
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>
+                  The scenarios depicted in the promotional video was informed by multiple real
+                  accounts gathered during the research phase. The language was intentionally left
+                  unfiltered to reflect the reality and gravity of these experiences.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-full row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative aspect-video">
+            <iframe
+              className="w-full h-full"
+              src={"https://www.youtube.com/embed/J6HDu1juCkg"}
+              title="SafeSpace Promotional Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
