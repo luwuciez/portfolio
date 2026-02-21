@@ -18,6 +18,10 @@ import businessCard from "../assets/safespace/business-card.png";
 import stickers from "../assets/safespace/stickers.png";
 import website from "../assets/safespace/website.png";
 import lofis from "../assets/safespace/lofi.png";
+import homeChange from "../assets/safespace/home-change.png";
+import navbarChange from "../assets/safespace/navbar-change.png";
+import recordingChange from "../assets/safespace/recording-change.png";
+import formChange from "../assets/safespace/form-change.png";
 
 import ZoomableImage from "../components/zoomableImage.jsx";
 
@@ -350,7 +354,100 @@ export default function SafeSpace() {
 
       <PageTitle title="Prototyping & Testing" id="design" />
       <div className="max-w-3xl lg:max-w-300 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree">
-        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4"></div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4">
+          <ZoomableImage
+            src={lofis}
+            alt="Low-Fidelity Wireframes"
+            label="Low-Fidelity Wireframes"
+            className="col-span-full xl:col-span-3 rounded-2xl bg-dark/80 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative min-h-60"
+            imgClassName="w-full h-full object-contain"
+          />
+          <div className="col-span-full xl:col-span-1 flex flex-col gap-4">
+            <div className="flex flex-col py-3 px-4 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] text-light w-full h-full">
+              <h4 className="font-bold text-lg sm:text-xl mb-2">Low-Fidelity Wireframes</h4>
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>
+                  Guided by the defined user flow, low-fidelity wireframes were developed to explore
+                  the app’s layout and information architecture.
+                </p>
+                <p>
+                  These early concepts allowed the team to visualize core interactions, assess
+                  usability, and identify problematic areas before moving into higher-fidelity
+                  design iterations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-full flex flex-col gap-4">
+            <div className="flex flex-col py-3 px-4 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] text-light w-full h-full">
+              <h4 className="font-bold text-lg sm:text-xl mb-2">Testing and Iterating</h4>
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>
+                  To evaluate the effectiveness of the designs,
+                  <Emphasis> usability testing </Emphasis>was conducted with representative users
+                  throughout the prototyping process. These sessions highlighted issues with layout,
+                  wording, and visual hierarchy, which
+                  <Emphasis> directly guided design improvements</Emphasis>. The feedback helped
+                  shape a final product that feels intuitive, accessible, and aligned with real user
+                  needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <ZoomableImage
+            src={homeChange}
+            alt="Evolution of the Home page"
+            label="Evolution of the Home page"
+            className="col-span-full rounded-2xl bg-dark/80 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative min-h-60"
+            imgClassName="w-full h-full object-contain"
+          />
+
+          <ZoomableImage
+            src={navbarChange}
+            alt="Changes to NavBar"
+            label="Changes to NavBar"
+            className="col-span-full rounded-2xl bg-dark/80 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative min-h-60"
+            imgClassName="w-full h-full object-contain"
+          />
+
+          <ZoomableImage
+            src={recordingChange}
+            alt="Changes to Recording tool"
+            label="Changes to Recording tool"
+            className="col-span-full rounded-2xl bg-dark/80 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative min-h-60"
+            imgClassName="w-full h-full object-contain"
+          />
+
+          <ZoomableImage
+            src={formChange}
+            alt="Changes to Reporting Form"
+            label="Changes to Reporting Form"
+            className="col-span-full xl:col-span-3 rounded-2xl bg-dark/80 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative min-h-60"
+            imgClassName="w-full h-full object-contain"
+          />
+
+          <div className="col-span-full xl:col-span-1 flex flex-col gap-4">
+            <div className="flex flex-col py-3 px-4 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] text-light w-full h-full">
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>
+                  Forms were initially split across multiple pages to prevent users from feeling
+                  overwhelmed by too much information at once.
+                </p>
+                <p>
+                  However, testing revealed that users preferred a continuous scrolling experience,
+                  allowing them to see the full context as they move down the form, rather than
+                  flipping through separate pages.
+                </p>
+                <p>
+                  This change improved usability and made the form-filling process feel more
+                  intuitive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <PageTitle title="Branding" id="branding" />
@@ -543,7 +640,7 @@ export default function SafeSpace() {
             </div>
           </div>
 
-          <div className="col-span-full row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative aspect-video">
+          <div className="col-span-full row-span-1 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative aspect-video">
             <iframe
               className="w-full h-full"
               src={"https://www.youtube.com/embed/J6HDu1juCkg"}
