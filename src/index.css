@@ -26,6 +26,10 @@
   --drop-shadow-custom: 0 0 10px #f0f0f075;
 }
 
+html {
+  background-color: black;
+}
+
 #root {
   margin: 0;
   min-height: 100vh;

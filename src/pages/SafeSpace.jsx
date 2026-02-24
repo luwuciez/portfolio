@@ -688,7 +688,7 @@ export default function SafeSpace() {
 
           {/* Palette */}
           <div className="col-span-full lg:col-span-2 row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
-            <img src={palette} alt="Moodboard" className="w-full h-full object-cover" />
+            <img src={palette} alt="Colour Palette" className="w-full h-full object-cover" />
           </div>
 
           <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
@@ -760,7 +760,11 @@ export default function SafeSpace() {
           </div>
 
           <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
-            <img src={businessCard} alt="Moodboard" className="w-full h-full object-cover" />
+            <img
+              src={businessCard}
+              alt="SafeSpace business card"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
@@ -781,7 +785,7 @@ export default function SafeSpace() {
           <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
             <img
               src={stickers}
-              alt="Promotional video for SafeSpace"
+              alt="SafeSpace branded stickers"
               className="object-cover h-full w-full"
             />
           </div>
@@ -853,12 +857,11 @@ export default function SafeSpace() {
 
           <div className="col-span-full row-span-1 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative aspect-video">
             <iframe
-              className="w-full h-full"
+              className="w-full h-full border-0"
               src={"https://www.youtube.com/embed/J6HDu1juCkg"}
               title="SafeSpace Promotional Video"
-              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
         </div>
@@ -892,21 +895,21 @@ export default function SafeSpace() {
           <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
             <img
               src={showcase1}
-              alt="Promotional video for SafeSpace"
+              alt="Team photo at the showcase table"
               className="object-cover h-full w-full"
             />
           </div>
           <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-3 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
             <img
               src={showcase2}
-              alt="Promotional video for SafeSpace"
+              alt="The team explaining and showcasing SafeSpace to attendees"
               className="object-cover h-full w-full"
             />
           </div>
           <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
             <img
               src={showcase3}
-              alt="Promotional video for SafeSpace"
+              alt="Presenting SafeSpace in front of audiences and judges"
               className="object-cover h-full w-full"
             />
           </div>
