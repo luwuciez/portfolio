@@ -22,8 +22,8 @@ import homeChange from "../assets/safespace/home-change.png";
 import navbarChange from "../assets/safespace/navbar-change.png";
 import recordingChange from "../assets/safespace/recording-change.png";
 import formChange from "../assets/safespace/form-change.png";
-import safi from "../assets/safespace/safi.mov";
-import recording from "../assets/safespace/recording.mov";
+import safi from "../assets/safespace/safi.mp4";
+import recording from "../assets/safespace/recording.mp4";
 import websupp from "../assets/safespace/websupplement.mp4";
 import showcase1 from "../assets/safespace/showcase-photo1.jpeg";
 import showcase2 from "../assets/safespace/showcase-photo2.jpeg";
@@ -46,7 +46,7 @@ const Emphasis = ({ children }) => {
 };
 
 function FinalProduct({ safi, recording }) {
-  const [active, setActive] = useState("reports");
+  const [active, setActive] = useState("prototype");
 
   const renderContent = () => {
     if (active === "prototype") {
@@ -216,7 +216,7 @@ function PlacementReveal({ photo }) {
         <div className="h-80 mx-auto w-fit rounded-2xl px-16 py-8 flex flex-col gap-2 items-center justify-center">
           <span className="text-white font-bold text-7xl sm:text-8xl leading-none">1st</span>
           <p className="text-light text-sm sm:text-base">
-            With 350+ votes from panel judges and audience.
+            Receiving over 300 votes from panel judges and audience!
           </p>
         </div>
       </div>
