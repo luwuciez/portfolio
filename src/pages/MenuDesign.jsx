@@ -1,7 +1,7 @@
 import ProjectTemplate from "../components/projectTemplate";
 
 // Assets
-import menuMockup from "../assets/menu/menu_mockup.png";
+import menuMockup from "../assets/menu/menu_mockup.webp";
 import logo from "../assets/menu/logo.png";
 import palette from "../assets/menu/palette.png";
 import luckybreakMenu from "../assets/menu/luckybreak_menu.pdf";

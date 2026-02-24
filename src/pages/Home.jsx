@@ -8,9 +8,9 @@ import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 // Assets
-import safespaceMockup from "../assets/safespace/mocks.png";
-import canMockup from "../assets/aloealien/mockup.png";
-import menuMockup from "../assets/menu/menu_mockup.png";
+import safespaceMockup from "../assets/safespace/mocks.webp";
+import canMockup from "../assets/aloealien/mockup.webp";
+import menuMockup from "../assets/menu/menu_mockup.webp";
 import brochureMockup from "../assets/travel/mockup.png";
 import inkLinkPromo from "../assets/inklink/thumbnail.png";
 

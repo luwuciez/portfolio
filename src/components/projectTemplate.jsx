@@ -26,7 +26,7 @@ export default function ProjectTemplate({
             <LinkButton
               link={file.path}
               text={file.text}
-              className="absolute right-4 bottom-4 z-10 hidden sm:flex"
+              className="absolute left-4 bottom-4 z-10 hidden sm:flex"
             />
           </div>
 

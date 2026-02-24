@@ -1,12 +1,12 @@
 import ProjectTemplate from "../components/projectTemplate";
 
 // Assets
-import canMockup from "../assets/aloealien/mockup.png";
-import logo from "../assets/aloealien/logo.png";
-import stickers from "../assets/aloealien/stickers.png";
-import turnaround1 from "../assets/aloealien/turnaround1.png";
-import turnaround2 from "../assets/aloealien/turnaround2.png";
-import turnaround3 from "../assets/aloealien/turnaround3.png";
+import canMockup from "../assets/aloealien/mockup.webp";
+import logo from "../assets/aloealien/logo.webp";
+import stickers from "../assets/aloealien/stickers.webp";
+import turnaround1 from "../assets/aloealien/turnaround1.webp";
+import turnaround2 from "../assets/aloealien/turnaround2.webp";
+import turnaround3 from "../assets/aloealien/turnaround3.webp";
 import proof from "../assets/aloealien/proof.pdf";
 
 export default function CanDesign() {

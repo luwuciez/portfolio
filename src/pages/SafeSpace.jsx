@@ -2,33 +2,33 @@ import PageTitle from "../components/pageTitle.jsx";
 import LinkButton from "../components/linkButton.jsx";
 
 //Assets
-import logo from "../assets/safespace/logo.png";
-import thumbnail from "../assets/safespace/mocks.png";
-import findings from "../assets/safespace/findings.png";
-import persona1 from "../assets/safespace/persona1.png";
-import persona2 from "../assets/safespace/persona2.png";
-import finalSitemap from "../assets/safespace/sitemap-final.png";
-import userFlow from "../assets/safespace/user-flow.png";
-import moodboard from "../assets/safespace/moodboard.png";
-import gradient from "../assets/safespace/gradient.png";
-import palette from "../assets/safespace/palette.png";
-import typography from "../assets/safespace/typography.png";
-import brochure from "../assets/safespace/brochure.png";
-import businessCard from "../assets/safespace/business-card.png";
-import stickers from "../assets/safespace/stickers.png";
-import website from "../assets/safespace/website.png";
-import lofis from "../assets/safespace/lofi.png";
-import homeChange from "../assets/safespace/home-change.png";
-import navbarChange from "../assets/safespace/navbar-change.png";
-import recordingChange from "../assets/safespace/recording-change.png";
-import formChange from "../assets/safespace/form-change.png";
+import logo from "../assets/safespace/logo.webp";
+import thumbnail from "../assets/safespace/mocks.webp";
+import findings from "../assets/safespace/findings.webp";
+import persona1 from "../assets/safespace/persona1.webp";
+import persona2 from "../assets/safespace/persona2.webp";
+import finalSitemap from "../assets/safespace/sitemap-final.webp";
+import userFlow from "../assets/safespace/user-flow.webp";
+import moodboard from "../assets/safespace/moodboard.webp";
+import gradient from "../assets/safespace/gradient.webp";
+import palette from "../assets/safespace/palette.webp";
+import typography from "../assets/safespace/typography.webp";
+import brochure from "../assets/safespace/brochure.webp";
+import businessCard from "../assets/safespace/business-card.webp";
+import stickers from "../assets/safespace/stickers.webp";
+import website from "../assets/safespace/website.webp";
+import lofis from "../assets/safespace/lofi.webp";
+import homeChange from "../assets/safespace/home-change.webp";
+import navbarChange from "../assets/safespace/navbar-change.webp";
+import recordingChange from "../assets/safespace/recording-change.webp";
+import formChange from "../assets/safespace/form-change.webp";
 import safi from "../assets/safespace/safi.mp4";
 import recording from "../assets/safespace/recording.mp4";
 import websupp from "../assets/safespace/websupplement.mp4";
-import showcase1 from "../assets/safespace/showcase-photo1.jpeg";
-import showcase2 from "../assets/safespace/showcase-photo2.jpeg";
-import showcase3 from "../assets/safespace/showcase-photo3.jpeg";
-import showcaseWin from "../assets/safespace/showcase-win.jpeg";
+import showcase1 from "../assets/safespace/showcase-photo1.webp";
+import showcase2 from "../assets/safespace/showcase-photo2.webp";
+import showcase3 from "../assets/safespace/showcase-photo3.webp";
+import showcaseWin from "../assets/safespace/showcase-win.webp";
 
 import ZoomableImage from "../components/zoomableImage.jsx";
 
@@ -840,7 +840,7 @@ export default function SafeSpace() {
             </div>
           </div>
 
-          <div className="col-span-full flex flex-col gap-4">
+          <div className="col-span-full flex flex-col gap-4 pt-20">
             <div className="flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full h-full">
               <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3">
                 <span>Promotional Video</span>
