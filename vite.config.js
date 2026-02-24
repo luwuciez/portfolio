@@ -5,4 +5,21 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "gsap-vendor": ["gsap", "@gsap/react"],
+          "particles-vendor": [
+            "tsparticles",
+            "@tsparticles/react",
+            "@tsparticles/plugin-emitters",
+            "@tsparticles/plugin-emitters-shape-circle",
+          ],
+          "ui-vendor": ["lucide-react", "react-zoom-pan-pinch", "lenis"],
+        },
+      },
+    },
+  },
 });

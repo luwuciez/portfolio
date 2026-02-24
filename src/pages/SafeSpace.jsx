@@ -102,57 +102,61 @@ function FinalProduct({ safi, recording }) {
   ];
 
   return (
-    <div className="max-w-3xl lg:max-w-200 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree items-center">
-      <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-center">
-        <div className="col-span-full md:col-span-1 flex flex-col gap-4 h-full">
-          <div className="text-light font-bold text-lg sm:text-xl">
-            <span>Tap/Click to view:</span>
+    <>
+      <div className="max-w-3xl lg:max-w-220 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree items-center">
+        <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-center">
+          <div className="col-span-full md:col-span-1 flex flex-col gap-4 h-full">
+            <div className="text-light font-bold text-lg sm:text-xl">
+              <span>Tap/Click to view:</span>
+            </div>
+            {items.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActive(item.id)}
+                className={`flex flex-col py-3 px-4 rounded-2xl text-light w-full h-full text-left transition-all cursor-pointer border-2 ${
+                  active === item.id
+                    ? "bg-safespace/20 border-safespace"
+                    : "bg-lightsurface/10 backdrop-blur-[2px] border-transparent hover:bg-lightsurface/20"
+                }`}
+              >
+                <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3 items-center">
+                  <span>{item.label}</span>
+                  {active === item.id && (
+                    <span className="text-safespace text-sm hidden md:inline">▶</span>
+                  )}
+                </div>
+                <div className="flex flex-col text-sm sm:text-base gap-2">
+                  <p>{item.description}</p>
+                </div>
+              </button>
+            ))}
           </div>
-          {items.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActive(item.id)}
-              className={`flex flex-col py-3 px-4 rounded-2xl text-light w-full h-full text-left transition-all cursor-pointer border-2 ${
-                active === item.id
-                  ? "bg-safespace/20 border-safespace"
-                  : "bg-lightsurface/10 backdrop-blur-[2px] border-transparent hover:bg-lightsurface/20"
-              }`}
-            >
-              <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3 items-center">
-                <span>{item.label}</span>
-                {active === item.id && (
-                  <span className="text-safespace text-sm hidden md:inline">▶</span>
-                )}
-              </div>
-              <div className="flex flex-col text-sm sm:text-base gap-2">
-                <p>{item.description}</p>
-              </div>
-            </button>
-          ))}
-        </div>
-        <div className="col-span-full md:col-span-1 py-4 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] max-w-100 w-full mx-auto md:mx-0">
-          <div className="w-full overflow-hidden h-140 sm:h-180">{renderContent()}</div>
+          <div className="col-span-full md:col-span-1 py-4 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] max-w-100 w-full mx-auto md:mx-0">
+            <div className="w-full overflow-hidden h-140 sm:h-180">{renderContent()}</div>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-start mt-4">
-        <div className="col-span-full flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px]">
-          <div className="font-bold text-lg sm:text-xl mb-2">Web Supplement</div>
-          <p className="text-sm sm:text-base">
-            The web supplement complements the SafeSpace app, providing leadership and stakeholders
-            with access to reports by area. It also includes an AI summary tool that condenses all
-            reports in an area into a single, easy-to-read overview.
-          </p>
-        </div>
-        <div className="col-span-full py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full mx-auto md:mx-0">
-          <div className="w-full rounded-xl overflow-hidden aspect-video">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-              <source src={websupp} type="video/mp4" />
-            </video>
+      <div className="max-w-3xl lg:max-w-300 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree items-center">
+        <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-start">
+          <div className="col-span-full flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px]">
+            <div className="font-bold text-lg sm:text-xl mb-2">Web Supplement</div>
+            <p className="text-sm sm:text-base">
+              The web supplement complements the SafeSpace app, providing leadership and
+              stakeholders with access to reports by area. It also includes an AI summary tool that
+              condenses all reports in an area into a single, easy-to-read overview.
+            </p>
+          </div>
+          <div className="col-span-full py-4 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full mx-auto md:mx-0">
+            <div className="w-full rounded-lg overflow-hidden aspect-video">
+              <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                <source src={websupp} type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
