@@ -12,6 +12,7 @@ import Footer from "./components/footer";
 import BackToTop from "./components/backToTop";
 import SafeSpace from "./pages/SafeSpace";
 import SmoothScroll from "./components/smoothScroll";
+import ScrollToTop from "./components/scrollToTop";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <div className="min-h-screen flex flex-col">
         <div className="flex-1">
           <BrowserRouter>
+            <ScrollToTop />
             <SmoothScroll>
               <div className="fixed top-0 left-0 w-full z-10">
                 {/* Desktop navbar */}

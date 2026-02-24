@@ -22,11 +22,20 @@ import homeChange from "../assets/safespace/home-change.png";
 import navbarChange from "../assets/safespace/navbar-change.png";
 import recordingChange from "../assets/safespace/recording-change.png";
 import formChange from "../assets/safespace/form-change.png";
+import safi from "../assets/safespace/safi.mov";
+import recording from "../assets/safespace/recording.mov";
+import websupp from "../assets/safespace/websupplement.mp4";
+import showcase1 from "../assets/safespace/showcase-photo1.jpeg";
+import showcase2 from "../assets/safespace/showcase-photo2.jpeg";
+import showcase3 from "../assets/safespace/showcase-photo3.jpeg";
+import showcaseWin from "../assets/safespace/showcase-win.jpeg";
 
 import ZoomableImage from "../components/zoomableImage.jsx";
 
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useEffect, useRef } from "react";
 
 const video = "https://youtu.be/J6HDu1juCkg";
 
@@ -35,6 +44,203 @@ gsap.registerPlugin(ScrollToPlugin);
 const Emphasis = ({ children }) => {
   return <span className="font-semibold text-safespace">{children}</span>;
 };
+
+function FinalProduct({ safi, recording }) {
+  const [active, setActive] = useState("reports");
+
+  const renderContent = () => {
+    if (active === "prototype") {
+      return (
+        <iframe
+          key="prototype"
+          className="h-full w-full border-0"
+          src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share"
+          allowFullScreen
+        />
+      );
+    }
+    if (active === "recording") {
+      return (
+        <video
+          key="recording"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-contain"
+        >
+          <source src={recording} type="video/mp4" />
+        </video>
+      );
+    }
+    return (
+      <video key="reports" autoPlay loop muted playsInline className="h-full w-full object-contain">
+        <source src={safi} type="video/mp4" />
+      </video>
+    );
+  };
+
+  const items = [
+    {
+      id: "prototype",
+      label: "High-Fidelity Prototype",
+      description:
+        "The high-fidelity prototype was handed off to the development team along with a component library and detailed style guide to ensure the final build reflected the intended look and feel of the app.",
+    },
+    {
+      id: "recording",
+      label: "Recording Incidents",
+      description:
+        "The central navigation button opens the recording tool for quick, discreet documentation. Recordings are passcode-protected and include an AI transcript with auto-generated time, location, and keywords. Report generation is powered by GPT-4o mini, eliminating the need for manual entry",
+    },
+    {
+      id: "reports",
+      label: "Creating Reports",
+      description:
+        "SafeSpace offers two reporting options: a simple manual form or Safi, an AI assistant powered by IBM watsonx. Safi guides users through the incident using gentle prompts and the conversation is then transformed into a clear report that can be saved privately or shared publicly.",
+    },
+  ];
+
+  return (
+    <div className="max-w-3xl lg:max-w-200 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree items-center">
+      <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-center">
+        <div className="col-span-full md:col-span-1 flex flex-col gap-4 h-full">
+          <div className="text-light font-bold text-lg sm:text-xl">
+            <span>Tap/Click to view:</span>
+          </div>
+          {items.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActive(item.id)}
+              className={`flex flex-col py-3 px-4 rounded-2xl text-light w-full h-full text-left transition-all cursor-pointer border-2 ${
+                active === item.id
+                  ? "bg-safespace/20 border-safespace"
+                  : "bg-lightsurface/10 backdrop-blur-[2px] border-transparent hover:bg-lightsurface/20"
+              }`}
+            >
+              <div className="font-bold text-lg sm:text-xl mb-2 flex flex-row gap-3 items-center">
+                <span>{item.label}</span>
+                {active === item.id && (
+                  <span className="text-safespace text-sm hidden md:inline">▶</span>
+                )}
+              </div>
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>{item.description}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+        <div className="col-span-full md:col-span-1 py-4 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] max-w-100 w-full mx-auto md:mx-0">
+          <div className="w-full overflow-hidden h-140 sm:h-180">{renderContent()}</div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 auto-rows-auto gap-4 w-full items-start mt-4">
+        <div className="col-span-full flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px]">
+          <div className="font-bold text-lg sm:text-xl mb-2">Web Supplement</div>
+          <p className="text-sm sm:text-base">
+            The web supplement complements the SafeSpace app, providing leadership and stakeholders
+            with access to reports by area. It also includes an AI summary tool that condenses all
+            reports in an area into a single, easy-to-read overview.
+          </p>
+        </div>
+        <div className="col-span-full py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full mx-auto md:mx-0">
+          <div className="w-full rounded-xl overflow-hidden aspect-video">
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+              <source src={websupp} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+gsap.registerPlugin(ScrollTrigger);
+
+function PlacementReveal({ photo }) {
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
+  const photoRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+
+      // Photo animates up + fades in, slightly delayed
+      gsap.fromTo(
+        photoRef.current,
+        { opacity: 0, y: 80 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.15,
+          scrollTrigger: {
+            trigger: photoRef.current,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={sectionRef} className="mx-auto flex flex-col gap-4 font-figtree">
+      <div className="h-50 flex items-center justify-center w-full">
+        <p className="font-bold text-light text-xl sm:text-2xl text-center">
+          And out of 10 teams, <br />
+          SafeSpace placed...
+        </p>
+      </div>
+      {/* Placement card */}
+      <div ref={cardRef} className="text-center flex flex-col gap-3 opacity-0">
+        <div className="h-80 mx-auto w-fit rounded-2xl px-16 py-8 flex flex-col gap-2 items-center justify-center">
+          <span className="text-white font-bold text-7xl sm:text-8xl leading-none">1st</span>
+          <p className="text-light text-sm sm:text-base">
+            With 350+ votes from panel judges and audience.
+          </p>
+        </div>
+      </div>
+
+      {/* Result photo */}
+      <div ref={photoRef} className="opacity-0">
+        <div className="rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden">
+          <img
+            src={photo}
+            alt="SafeSpace team photo after placing first at the Showcase"
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="mx-auto w-fit rounded-2xl py-2 flex flex-col gap-2 items-center">
+          <p className="text-light text-sm sm:text-base">
+            Special thanks to the team's project advisor,
+            <Emphasis> Chris Ernst</Emphasis>, for offering thoughtful guidance and valuable
+            insights into the trades industry.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function SafeSpace() {
   const JumpToButton = ({ text, targetId }) => {
@@ -98,7 +304,7 @@ export default function SafeSpace() {
               </div>
               <div className="w-full">
                 <h4 className="font-bold text-lg sm:text-xl">Roles</h4>
-                <p className="text-sm sm:text-base">UX/UI Design Lead, UX Researcher</p>
+                <p className="text-sm sm:text-base">Lead UX/UI Designer, UX Researcher</p>
               </div>
               <div className="w-full flex flex-row gap-2">
                 <span className="font-bold text-lg sm:text-xl">Team Size:</span>
@@ -138,8 +344,9 @@ export default function SafeSpace() {
               <JumpToButton text="Prototyping" targetId="design" />
               <JumpToButton text="Branding" targetId="branding" />
               <JumpToButton text="Marketing" targetId="marketing" />
-              <JumpToButton text="Final Results" targetId="final" />
-              <JumpToButton text="Takeaways" targetId="takeaways" />
+              <JumpToButton text="Final Product" targetId="final" />
+              <JumpToButton text="Showcase Day" targetId="showcase" />
+              {/* <JumpToButton text="Takeaways" targetId="takeaways" /> */}
             </div>
           </div>
 
@@ -653,15 +860,60 @@ export default function SafeSpace() {
         </div>
       </div>
 
-      <PageTitle title="Final Results" id="final" />
-      <div className="max-w-3xl lg:max-w-300 mx-auto flex flex-col gap-4 pt-10 pb-10 px-6 font-figtree">
-        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4"></div>
+      <PageTitle title="Final Product" id="final" />
+      <FinalProduct safi={safi} recording={recording} />
+
+      <PageTitle title="BCIT Technology Showcase" id="showcase" />
+      <div className="max-w-3xl lg:max-w-300 mx-auto flex flex-col gap-4 pt-10 pb-30 px-6 font-figtree">
+        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4">
+          <div className="col-span-full lg:col-span-2 flex flex-col gap-4">
+            <div className="flex flex-col py-3 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] w-full h-full">
+              <div className="flex flex-col text-sm sm:text-base gap-2">
+                <p>
+                  On December 5th, 2025, the team presented the SafeSpace app at{" "}
+                  <Emphasis>
+                    BCIT's D3/FSWD x ConnectHERHub Student Design and Technology Showcase
+                  </Emphasis>
+                  .
+                </p>
+                <p>
+                  At the showcase, Students from the Digital Design and Development (D3) and
+                  Full-Stack Web Development (FSWD) programs showcased AI-driven solutions tackling
+                  real-world challenges in the skilled trades, focused on improving experiences for
+                  underrepresented groups in the industry.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
+            <img
+              src={showcase1}
+              alt="Promotional video for SafeSpace"
+              className="object-cover h-full w-full"
+            />
+          </div>
+          <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-3 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
+            <img
+              src={showcase2}
+              alt="Promotional video for SafeSpace"
+              className="object-cover h-full w-full"
+            />
+          </div>
+          <div className="col-span-full lg:col-span-2 row-span-1 lg:row-span-2 rounded-2xl bg-lightsurface/10 backdrop-blur-[2px] overflow-hidden items-center justify-center flex relative">
+            <img
+              src={showcase3}
+              alt="Promotional video for SafeSpace"
+              className="object-cover h-full w-full"
+            />
+          </div>
+        </div>
+        <PlacementReveal photo={showcaseWin} />
       </div>
 
-      <PageTitle title="Takeaways" id="takeaways" />
+      {/* <PageTitle title="Takeaways" id="takeaways" />
       <div className="max-w-3xl lg:max-w-300 mx-auto flex flex-col gap-4 pt-10 pb-30 px-6 font-figtree">
         <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-auto gap-4"></div>
-      </div>
+      </div> */}
     </div>
   );
 }
