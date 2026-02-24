@@ -69,7 +69,7 @@ const motions = [
     tags={["Animation", "Storyboarding", "Illustrations"]}
     image={inkLinkPromo}
     timeline="May 2025"
-    link="#"
+    link="/inklink-promo"
   />,
 ];
 
@@ -125,7 +125,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <PageTitle title="MY WORKS" id="work" />
+      <PageTitle title="FEATURED WORKS" id="work" />
       <div className="flex flex-col md:flex-row gap-4 justify-center px-4">
         <FilterButton
           title="All"

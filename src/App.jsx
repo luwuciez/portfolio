@@ -13,6 +13,7 @@ import BackToTop from "./components/backToTop";
 import SafeSpace from "./pages/SafeSpace";
 import SmoothScroll from "./components/smoothScroll";
 import ScrollToTop from "./components/scrollToTop";
+import InkLinkPromo from "./pages/InkLinkPromo";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                   <Route path="/menu-design" element={<MenuDesign />} />
                   <Route path="/can-design" element={<CanDesign />} />
                   <Route path="/safespace" element={<SafeSpace />} />
+                  <Route path="/inklink-promo" element={<InkLinkPromo />} />
                 </Routes>
               </div>
             </SmoothScroll>
