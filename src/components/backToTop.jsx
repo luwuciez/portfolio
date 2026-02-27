@@ -33,9 +33,9 @@ const BackToTop = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 p-3 rounded-full bg-surface/80 backdrop-blur-xs shadow-custom border border-light/10 text-light transition-opacity duration-300 ${
+      className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 p-3 pl-4 pr-5 rounded-full bg-surface/80 backdrop-blur-xs shadow-custom border border-light/10 text-light transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-      } hover:cursor-pointer`}
+      } hover:cursor-pointer flex flex-row`}
       aria-label="Back to top"
     >
       <svg
@@ -50,6 +50,7 @@ const BackToTop = () => {
       >
         <path d="m18 15-6-6-6 6" />
       </svg>
+      Top
     </button>
   );
 };

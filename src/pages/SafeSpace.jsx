@@ -264,7 +264,7 @@ export default function SafeSpace() {
 
     return (
       <button
-        className="bg-light/20 hover:bg-light text-light hover:text-dark px-4 py-2 rounded-xl hover:cursor-pointer transition-all"
+        className="bg-lightsurface/10 backdrop-blur-xs hover:bg-lightsurface/20 text-light text-lg px-5 py-2 rounded-full hover:cursor-pointer transition-all border border-light/10 hover:shadow-custom"
         onClick={handleJump}
       >
         {text}
@@ -284,7 +284,7 @@ export default function SafeSpace() {
               alt="Mockup of the SafeSpace app on iPhone 16 screens."
               className="object-cover h-full w-full"
             />
-            <div className="absolute right-4 bottom-4 z-10 hidden md:flex md:flex-col gap-4">
+            <div className="absolute left-4 bottom-4 z-10 hidden md:flex md:flex-row gap-4">
               <LinkButton link={video} text="Promotional Video" />
               <LinkButton link="https://safe-space.figma.site/" text="Marketing Website" />
             </div>
@@ -325,7 +325,7 @@ export default function SafeSpace() {
           </div>
 
           {/* Overview */}
-          <div className="rounded-2xl bg-lightsurface/10 text-light py-3 px-4 flex flex-col col-span-full sm:col-span-2 h-full row-span-1 backdrop-blur-[2px]">
+          <div className="rounded-2xl bg-lightsurface/10 text-light py-3 px-4 flex flex-col col-span-full h-full row-span-1 backdrop-blur-[2px]">
             <h4 className="font-bold text-lg sm:text-xl mb-2">Project Background</h4>
             <div className="flex flex-col text-sm sm:text-base gap-3">
               <p>
@@ -339,8 +339,8 @@ export default function SafeSpace() {
           </div>
 
           {/* ToC */}
-          <div className="rounded-2xl bg-lightsurface/10 text-light py-3 px-4 flex flex-col col-span-full sm:col-span-2 h-full row-span-1 backdrop-blur-[2px]">
-            <h4 className="font-bold text-lg sm:text-xl mb-2">Table of Contents</h4>
+          <div className="rounded-2xl bg-lightsurface/10 text-light py-3 px-4 flex flex-col col-span-full h-full row-span-1 backdrop-blur-[2px]">
+            <h4 className="font-bold text-lg sm:text-xl mb-2">Jump to...</h4>
             <div className="flex flex-wrap items-start gap-3">
               <JumpToButton text="Overview" targetId="overview" />
               <JumpToButton text="Research" targetId="research" />
