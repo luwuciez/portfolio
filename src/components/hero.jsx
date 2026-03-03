@@ -25,7 +25,7 @@ function Hero() {
           end: 1.1,
         },
         transformOrigin: "50% 50%",
-        duration: 20,
+        duration: 40,
         repeat: -1,
         ease: "none",
       });
@@ -37,7 +37,7 @@ function Hero() {
           end: 1.6,
         },
         transformOrigin: "50% 50%",
-        duration: 20,
+        duration: 40,
         repeat: -1,
         ease: "none",
       });
@@ -49,7 +49,7 @@ function Hero() {
           end: 1.7,
         },
         transformOrigin: "50% 50%",
-        duration: 20,
+        duration: 40,
         repeat: -1,
         ease: "none",
       });
@@ -112,6 +112,22 @@ function Hero() {
         duration: 40,
         repeat: -1,
         ease: "none",
+      });
+
+      gsap.to("#star-small", {
+        scale: "-=0.2",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to("#star-large", {
+        scale: "-=0.2",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
 
       gsap.to("#orbit1-group", {
@@ -208,19 +224,19 @@ function Hero() {
             <image
               id="star-large"
               href={star_icon}
-              width="66"
-              height="66"
-              x="-33"
-              y="-33"
+              width="56"
+              height="56"
+              x="-28"
+              y="-28"
               transform="rotate(-5, -5, -5)"
             />
             <image
               id="star-small"
               href={star_icon}
-              width="60"
-              height="60"
-              x="-30"
-              y="-30"
+              width="52"
+              height="52"
+              x="-26"
+              y="-26"
               transform="rotate(30, 30, 30)"
             />
             <ellipse id="planet" cx="0" cy="0" rx="12" ry="12" fill="#FF9DBB" />
