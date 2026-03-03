@@ -54,7 +54,8 @@ function FinalProduct({ safi, recording }) {
         <iframe
           key="prototype"
           className="h-full w-full border-0"
-          src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share"
+          src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
+          loading="lazy"
           allowFullScreen
         />
       );
@@ -358,7 +359,8 @@ export default function SafeSpace() {
           <div className="col-span-full sm:col-span-2 row-span-2 min-h-150 w-full rounded-2xl overflow-hidden order-1 sm:order-0">
             <iframe
               className="h-full w-full border-0"
-              src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share"
+              src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
+              loading="lazy"
               allowFullScreen
             ></iframe>
           </div>
