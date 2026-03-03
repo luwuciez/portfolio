@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import { MoveDirection, RotateDirection, OutMode } from "@tsparticles/engine";
+import { MoveDirection, OutMode } from "@tsparticles/engine";
 
 const Background = () => {
   const [init, setInit] = useState(false);

@@ -29,6 +29,7 @@ import showcase1 from "../assets/safespace/showcase-photo1.webp";
 import showcase2 from "../assets/safespace/showcase-photo2.webp";
 import showcase3 from "../assets/safespace/showcase-photo3.webp";
 import showcaseWin from "../assets/safespace/showcase-win.webp";
+import figmaPreview from "../assets/safespace/figma.png";
 
 import ZoomableImage from "../components/zoomableImage.jsx";
 
@@ -38,6 +39,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState, useEffect, useRef } from "react";
 
 const video = "https://youtu.be/J6HDu1juCkg";
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -51,13 +54,30 @@ function FinalProduct({ safi, recording }) {
   const renderContent = () => {
     if (active === "prototype") {
       return (
-        <iframe
-          key="prototype"
-          className="h-full w-full border-0"
-          src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
-          loading="lazy"
-          allowFullScreen
-        />
+        <div className="relative h-full w-full">
+          {isSafari ? (
+            <>
+              <LinkButton
+                className="absolute left-1/2 top-1/2 -translate-1/2 z-10 w-3/4"
+                link="https://www.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637"
+                text="View Prototype"
+              />
+              <div className="absolute inset-0 z-9 bg-black/50 flex items-center justify-center"></div>
+              <img
+                src={figmaPreview}
+                alt="Prototype Preview"
+                className="object-cover h-full w-full"
+              />
+            </>
+          ) : (
+            <iframe
+              className="h-full w-full border-0"
+              src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
+              loading="lazy"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
       );
     }
     if (active === "recording") {
@@ -133,7 +153,7 @@ function FinalProduct({ safi, recording }) {
             ))}
           </div>
           <div className="col-span-full md:col-span-1 py-4 px-4 rounded-2xl text-light bg-lightsurface/10 backdrop-blur-[2px] max-w-100 w-full mx-auto md:mx-0">
-            <div className="w-full overflow-hidden h-140 sm:h-180">{renderContent()}</div>
+            <div className="w-full overflow-hidden h-140 sm:h-180 relative">{renderContent()}</div>
           </div>
         </div>
       </div>
@@ -356,13 +376,29 @@ export default function SafeSpace() {
           </div>
 
           {/* Prototype */}
-          <div className="col-span-full sm:col-span-2 row-span-2 min-h-150 w-full rounded-2xl overflow-hidden order-1 sm:order-0">
-            <iframe
-              className="h-full w-full border-0"
-              src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
-              loading="lazy"
-              allowFullScreen
-            ></iframe>
+          <div className="col-span-full sm:col-span-2 row-span-2 min-h-150 w-full rounded-2xl overflow-hidden order-1 sm:order-0 relative">
+            {isSafari ? (
+              <>
+                <LinkButton
+                  className="absolute left-1/2 top-1/2 w-1/2 -translate-1/2 z-10"
+                  link="https://www.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637"
+                  text="View Prototype"
+                />
+                <div className="absolute z-9 bg-black/50 w-full h-full"></div>
+                <img
+                  src={figmaPreview}
+                  alt="Mockup of the SafeSpace app on iPhone 16 screens."
+                  className="object-cover h-full w-full"
+                />
+              </>
+            ) : (
+              <iframe
+                className="h-full w-full border-0"
+                src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
+                loading="lazy"
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
 
           {/* Challenge */}
@@ -447,7 +483,7 @@ export default function SafeSpace() {
             src={findings}
             alt="Research Findings"
             label="Research Findings"
-            className="col-span-2 row-span-2 rounded-2xl bg-surface overflow-hidden items-center justify-center flex relative min-h-100"
+            className="col-span-2 row-span-2 rounded-2xl bg-surface overflow-hidden items-center justify-center flex relative min-h-200 lg:min-h-100"
             imgClassName="w-full h-full object-cover absolute inset-0"
           />
 
