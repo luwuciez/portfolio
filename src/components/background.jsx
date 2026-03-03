@@ -6,6 +6,11 @@ import { MoveDirection, RotateDirection, OutMode } from "@tsparticles/engine";
 const Background = () => {
   const [init, setInit] = useState(false);
 
+  // Detect Safari (and exclude Chrome/Edge/Android)
+  const isSafari = useMemo(() => {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }, []);
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -25,11 +30,11 @@ const Background = () => {
           value: "#090a0f",
         },
       },
-      fpsLimit: 60,
+      fpsLimit: 30,
       interactivity: {
         events: {
           onHover: {
-            enable: true,
+            enable: !isSafari,
             mode: "bubble",
           },
         },
@@ -47,9 +52,9 @@ const Background = () => {
         number: {
           density: {
             enable: true,
-            value_area: 100,
+            value_area: 400,
           },
-          value: 4000,
+          value: isSafari ? 800 : 2000,
         },
         color: {
           value: "#ffffff",
@@ -59,21 +64,21 @@ const Background = () => {
         },
         move: {
           direction: MoveDirection.topRight,
-          enable: true,
+          enable: !isSafari,
           outModes: {
             default: OutMode.out,
           },
           random: false,
           speed: 0.2,
           straight: true,
-          spin: true,
+          spin: false,
         },
         shape: {
           type: "circle",
         },
         opacity: {
           animation: {
-            enable: true,
+            enable: !isSafari,
             speed: 1,
             sync: false,
           },
@@ -83,7 +88,7 @@ const Background = () => {
           value: { min: 0.5, max: 1.5 },
         },
       },
-      detectRetina: true,
+      detectRetina: !isSafari,
     }),
     [],
   );

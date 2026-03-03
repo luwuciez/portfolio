@@ -36,6 +36,10 @@ export default function MotionTemplate({
                 <h4 className="font-bold text-lg sm:text-xl">Roles</h4>
                 <p className="text-sm sm:text-base">{roles.join(", ")}</p>
               </div>
+              <div className="w-full flex flex-row gap-2">
+                <span className="font-bold text-lg sm:text-xl">Team Size:</span>
+                <span className="text-lg sm:text-xl">1</span>
+              </div>
               <div className="w-full">
                 <h4 className="font-bold text-lg sm:text-xl">Tools</h4>
                 <p className="text-sm sm:text-base">{tools.join(", ")}</p>
