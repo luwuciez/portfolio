@@ -58,7 +58,7 @@ function FinalProduct({ safi, recording }) {
           {isSafari ? (
             <>
               <LinkButton
-                className="absolute left-1/2 top-1/2 -translate-1/2 z-10 w-3/4"
+                className="absolute left-1/2 top-1/2 -translate-1/2 z-10 w-full sm:w-3/4"
                 link="https://www.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637"
                 text="View Prototype"
               />

@@ -11,7 +11,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import safespaceMockup from "../assets/safespace/mocks.webp";
 import canMockup from "../assets/aloealien/mockup.webp";
 import menuMockup from "../assets/menu/menu_mockup.webp";
-import brochureMockup from "../assets/travel/mockup.png";
+import brochureMockup from "../assets/travel/mockup.webp";
 import inkLinkPromo from "../assets/inklink/thumbnail.png";
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -52,14 +52,14 @@ const graphics = [
     timeline="April 2025"
     link="/menu-design"
   />,
-  // <GridTemplate
-  //   title="Travel Brochure"
-  //   description="Travel brochure design for G Adventures tours."
-  //   image={brochureMockup}
-  //   tags={["Layout Design", "Typography", "Photo Editing"]}
-  //   timeline="October 2025"
-  //   link="#"
-  // />,
+  <GridTemplate
+    title="Travel Brochure"
+    description="Travel brochure design for G Adventures tours."
+    image={brochureMockup}
+    tags={["Layout Design", "Typography", "Photo Editing"]}
+    timeline="October 2025"
+    link="/tour-brochure"
+  />,
 ];
 
 const motions = [

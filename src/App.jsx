@@ -14,6 +14,7 @@ import SafeSpace from "./pages/SafeSpace";
 import SmoothScroll from "./components/smoothScroll";
 import ScrollToTop from "./components/scrollToTop";
 import InkLinkPromo from "./pages/InkLinkPromo";
+import Brochure from "./pages/Brochure";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                   <Route path="/can-design" element={<CanDesign />} />
                   <Route path="/safespace" element={<SafeSpace />} />
                   <Route path="/inklink-promo" element={<InkLinkPromo />} />
+                  <Route path="/tour-brochure" element={<Brochure />} />
                 </Routes>
               </div>
             </SmoothScroll>
