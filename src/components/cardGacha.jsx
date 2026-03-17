@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
-import Particles from "@tsparticles/react";
-import { tsParticles } from "@tsparticles/engine";
-import { loadConfettiPreset } from "@tsparticles/preset-confetti";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import fanart1 from "../assets/gacha/fanart/9s.png";
@@ -176,8 +173,30 @@ const getRandomCard = (cards) => cards[Math.floor(Math.random() * cards.length)]
 const TEAR_Y_FRACTION = 0.25;
 
 function PackCard({ pack, isActive, onClick, interactive = false, hiddenOnMobile = false }) {
+  const btnRef = useRef(null);
+
+  // Track whether this is the initial mount so we don't pop on first render
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // Skip the pop on the very first render — only fire when isActive changes
+    // after mount (i.e. when the user navigates to this pack)
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (!isActive || !btnRef.current) return;
+
+    // Subtle pop: scale up slightly then settle back to 1
+    gsap
+      .timeline()
+      .to(btnRef.current, { scale: 1.08, duration: 0.18, ease: "power2.out" })
+      .to(btnRef.current, { scale: 1, duration: 0.28, ease: "elastic.out(1, 0.4)" });
+  }, [isActive]);
+
   return (
     <button
+      ref={btnRef}
       type="button"
       onClick={onClick}
       aria-label={interactive ? `Switch to ${pack.name}` : `${pack.name} pack`}
@@ -226,12 +245,11 @@ function RipPhase({
 
       <div className="mx-auto w-full max-w-75">
         <div
-          className="relative aspect-3/4 rounded-2xl w-full overflow-hidden bg-light"
+          className="relative aspect-3/4 rounded-2xl w-full overflow-hidden bg-light hover:cursor-e-resize"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
-          style={{ touchAction: "none", cursor: isRipDragging ? "crosshair" : "ew-resize" }}
         >
           {/* Pack label */}
           <div className="absolute inset-0 flex items-center justify-center p-4">
@@ -283,22 +301,22 @@ function RipPhase({
 // ── Reveal phase ──────────────────────────────────────────────────────────────
 // Rendered as a fixed overlay on top of the rip phase. Background is darkened
 // and blurred. Card pops in via GSAP. Confetti fires via tsparticles.
+//
+// The revealed card has two interactions:
+//   • Hover  — pointer position relative to the card drives a 3D tilt via
+//              inline CSS transform (rotateX + rotateY). Tilt is disabled while
+//              the card is flipped so the CSS flip transition runs unobstructed.
+//              On mouse leave, GSAP springs the tilt back to 0,0.
+//   • Click  — flips the card 180° on the Y axis to reveal the description.
 
 function RevealPhase({ revealedCard, onSelectAnother }) {
   const overlayRef = useRef(null);
-  const cardRef = useRef(null);
+  const cardRef = useRef(null); // GSAP entrance target + tilt container
+  const flipRef = useRef(null); // inner flip assembly (receives rotateY)
   const [flipped, setFlipped] = useState(false);
-  const [particlesReady, setParticlesReady] = useState(false);
-
-  // Init tsparticles confetti preset once
-  const particlesInit = useCallback(async () => {
-    await loadConfettiPreset(tsParticles);
-    setParticlesReady(true);
-  }, []);
-
-  useEffect(() => {
-    particlesInit();
-  }, [particlesInit]);
+  // Tracks pointer position (0–100) within the card for the shine gradient
+  const [shinePos, setShinePos] = useState({ x: 50, y: 50 });
+  const [shineVisible, setShineVisible] = useState(false);
 
   // GSAP: fade in overlay, then pop card up
   useEffect(() => {
@@ -315,45 +333,78 @@ function RevealPhase({ revealedCard, onSelectAnother }) {
     );
   }, []);
 
+  // 3D tilt: map pointer position within the card to rotateX/Y.
+  // Also updates shinePos so the specular highlight follows the cursor.
+  // Disabled while flipped so the CSS flip transition runs unobstructed.
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (flipped || !cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      // Normalise pointer to -0.5 … +0.5 relative to card centre
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      // Max tilt of ±12°; pointer right → positive rotateY, pointer up → positive rotateX
+      gsap.to(cardRef.current, {
+        rotateY: x * 24,
+        rotateX: -y * 24,
+        duration: 0.3,
+        ease: "power2.out",
+        transformPerspective: 900,
+      });
+      // Update shine position as percentage within the card (0–100)
+      setShinePos({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100,
+      });
+    },
+    [flipped],
+  );
+
+  // On leave, spring tilt back to neutral and fade the shine out
+  const handleMouseLeave = useCallback(() => {
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.4)",
+      transformPerspective: 900,
+    });
+    setShineVisible(false);
+  }, []);
+
+  // Show shine as soon as the pointer enters
+  const handleMouseEnter = useCallback(() => {
+    if (!flipped) setShineVisible(true);
+  }, [flipped]);
+
   return (
     <div
       ref={overlayRef}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center px-6 font-figtree bg-black/70 backdrop-blur-[2px]"
     >
-      {/* Confetti */}
-      {particlesReady && (
-        <Particles
-          id="reveal-confetti"
-          className="absolute inset-0 pointer-events-none"
-          options={{
-            preset: "confetti",
-            particles: { number: { value: 0 } },
-            emitters: {
-              position: { x: 50, y: 30 },
-              rate: { delay: 0.1, quantity: 20 },
-              life: { count: 1, duration: 0.6 },
-            },
-            fullScreen: false,
-          }}
-        />
-      )}
-
       {/* Card name */}
       <p className="text-light text-center text-xl md:text-2xl mb-6 font-semibold">
         {revealedCard.name}
       </p>
 
-      {/* Flippable card */}
+      {/* Tilt + GSAP entrance wrapper — pointer events drive rotateX/Y via GSAP */}
       <div
         ref={cardRef}
-        onClick={() => setFlipped((f) => !f)}
         className="w-full cursor-pointer"
         style={{
           maxWidth: revealedCard.orientation === "landscape" ? "520px" : "360px",
-          perspective: "900px",
+          transformStyle: "preserve-3d",
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => setFlipped((f) => !f)}
       >
+        {/* Flip assembly — rotates 180° on Y axis when flipped is true.
+            transformStyle preserve-3d propagates the tilt from the parent. */}
         <div
+          ref={flipRef}
           style={{
             position: "relative",
             width: "100%",
@@ -363,12 +414,10 @@ function RevealPhase({ revealedCard, onSelectAnother }) {
             transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          {/* Front — artwork */}
+          {/* Front face — artwork image + shine overlay */}
           <div
-            className="overflow-hidden rounded-2xl bg-light"
+            className="overflow-hidden rounded-3xl absolute inset-0 p-3 bg-linear-to-br from-customPurple via-customBlue to-customGreen"
             style={{
-              position: "absolute",
-              inset: 0,
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
             }}
@@ -376,11 +425,41 @@ function RevealPhase({ revealedCard, onSelectAnother }) {
             <img
               src={revealedCard.img}
               alt={revealedCard.name}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover bg-white rounded-2xl"
+            />
+            {/* Reflective shine overlay — a fixed-angle linear gradient band that
+                slides left/right across the card as the mouse moves horizontally.
+                The strip is wider than the card (200% width) so it can travel fully
+                off either edge without clipping abruptly.
+                - Fixed 135° slant (top-right → bottom-left)
+                - backgroundPosition X maps mouse X (0–100%) to band travel (-50%…50%)
+                - pointer-events:none so it never blocks clicks */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "inherit",
+                pointerEvents: "none",
+                opacity: shineVisible ? 1 : 0,
+                transition: "opacity 0.4s ease",
+                background: `linear-gradient(
+                  135deg,
+                  transparent 30%,
+                  rgba(255,255,255,0.1) 40%,
+                  rgba(255,255,255,0.4) 50%,
+                  rgba(255,255,255,0.1) 60%,
+                  transparent 70%
+                )`,
+                // Oversized so the band can slide fully across the card
+                backgroundSize: "200% 200%",
+                // Mouse X 0→100% moves the band from off-left to off-right
+                backgroundPosition: `${shinePos.x}% 0%`,
+              }}
             />
           </div>
 
-          {/* Back — description */}
+          {/* Back face — description; pre-rotated 180° so it reads correctly when flipped */}
           <div
             className="overflow-hidden rounded-2xl bg-light flex items-center justify-center p-6"
             style={{
