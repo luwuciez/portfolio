@@ -10,6 +10,9 @@ export default function Play() {
           In my free time, I love creating fan art, original characters, and exploring new ways to
           express my creativity.
         </p>
+        <p className="font-figtree text-orange-500 text-center text-lg mx-6 font-bold">
+          This page is under construction, please check back later.
+        </p>
       </div>
       <div className="max-w-3xl xl:max-w-300 mx-auto">
         <CardGacha />

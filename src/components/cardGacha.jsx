@@ -58,7 +58,7 @@ const PACKS = [
   },
   {
     id: 2,
-    name: "Original",
+    name: "Original Art",
     cards: [
       {
         img: original1,
@@ -94,7 +94,7 @@ const PACKS = [
   },
   {
     id: 3,
-    name: "Fan Merch",
+    name: "Key Charms",
     cards: [
       {
         img: merch1,
@@ -172,40 +172,14 @@ const getRandomCard = (cards) => cards[Math.floor(Math.random() * cards.length)]
 // Tear line sits 25% from the top of the pack
 const TEAR_Y_FRACTION = 0.25;
 
-function PackCard({ pack, isActive, onClick, interactive = false, hiddenOnMobile = false }) {
-  const btnRef = useRef(null);
-
-  // Track whether this is the initial mount so we don't pop on first render
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    // Skip the pop on the very first render — only fire when isActive changes
-    // after mount (i.e. when the user navigates to this pack)
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    if (!isActive || !btnRef.current) return;
-
-    // Subtle pop: scale up slightly then settle back to 1
-    gsap
-      .timeline()
-      .to(btnRef.current, { scale: 1.08, duration: 0.18, ease: "power2.out" })
-      .to(btnRef.current, { scale: 1, duration: 0.28, ease: "elastic.out(1, 0.4)" });
-  }, [isActive]);
-
+function PackCard({ pack, isActive, onClick, hiddenOnMobile = false }) {
   return (
     <button
-      ref={btnRef}
       type="button"
       onClick={onClick}
-      aria-label={interactive ? `Switch to ${pack.name}` : `${pack.name} pack`}
-      className={`relative aspect-3/4 rounded-2xl w-full max-w-75 overflow-hidden transition-all duration-300 ${
+      className={`relative aspect-3/4 rounded-2xl w-full max-w-75 overflow-hidden cursor-pointer ${
         hiddenOnMobile ? "hidden md:block" : "block"
-      } ${
-        isActive ? "scale-100 bg-light" : "scale-80 bg-light/70"
-      } ${interactive ? "cursor-pointer" : "cursor-default"}`}
-      disabled={!interactive}
+      } ${isActive ? "scale-100 bg-light" : "scale-80 bg-light/70"}`}
     >
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <span
@@ -245,7 +219,11 @@ function RipPhase({
 
       <div className="mx-auto w-full max-w-75">
         <div
-          className="relative aspect-3/4 rounded-2xl w-full overflow-hidden bg-light hover:cursor-e-resize"
+          className="relative aspect-3/4 rounded-2xl w-full overflow-hidden bg-light"
+          style={{
+            cursor:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ctext y='40' font-size='40' font-family='Dela Gothic One' fill='black' stroke='white' stroke-width='2'%3E%E2%86%92%3C/text%3E%3C/svg%3E\") 0 10, e-resize",
+          }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -670,19 +648,17 @@ export default function CardGacha() {
           pack={previousPack}
           isActive={false}
           onClick={() => goToIndex(previousIndex)}
-          interactive={true}
           hiddenOnMobile={true}
         />
 
         {/* Center pack */}
-        <PackCard pack={activePack} isActive={true} />
+        <PackCard pack={activePack} isActive={true} onClick={handleSelectPack} />
 
         {/* Right pack */}
         <PackCard
           pack={nextPack}
           isActive={false}
           onClick={() => goToIndex(nextIndex)}
-          interactive={true}
           hiddenOnMobile={true}
         />
       </div>
