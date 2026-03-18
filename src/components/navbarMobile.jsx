@@ -48,26 +48,36 @@ const NavbarMobile = () => {
     setMenuIsOpen(!menuIsOpen);
   }
 
+  useGSAP(() => {
+    gsap.set(buttonRef.current, { height: 48 });
+    gsap.set(menuRef.current, { width: 0 });
+    gsap.set(ulRef.current.querySelectorAll("li"), { opacity: 0, x: -10 });
+  }, []);
+
   useEffect(() => {
+    gsap.killTweensOf(chevronRef.current);
+    gsap.killTweensOf(buttonRef.current);
+    gsap.killTweensOf(menuRef.current);
+    gsap.killTweensOf(ulRef.current.querySelectorAll("li"));
+
     gsap.to(chevronRef.current, { rotation: menuIsOpen ? -180 : 0, duration: 0.3 });
-    gsap.to(buttonRef.current, { height: "48px", duration: 0.2 });
     if (menuIsOpen) {
-      gsap.to(buttonRef.current, { height: "auto", duration: 0.2 }, "-=0.3");
+      gsap.to(buttonRef.current, { height: "auto", duration: 0.2 });
       gsap.to(menuRef.current, { width: "auto", duration: 0.3 });
-      gsap.to(
-        ulRef.current.querySelectorAll("li"),
-        { opacity: 1, x: 0, stagger: 0.1, duration: 0.2 },
-        "-=0.1",
-      );
+      gsap.to(ulRef.current.querySelectorAll("li"), {
+        opacity: 1,
+        x: 0,
+        stagger: 0.1,
+        duration: 0.2,
+      });
     } else {
       gsap.to(ulRef.current.querySelectorAll("li"), {
         opacity: 0,
         x: -10,
-        stagger: -0.1,
         duration: 0.1,
       });
-      gsap.to(menuRef.current, { width: 0, duration: 0.3 }, "-=0.1");
-      gsap.to(buttonRef.current, { height: "48px", duration: 0.2 }, "-=0.3");
+      gsap.to(menuRef.current, { width: 0, duration: 0.5 });
+      gsap.to(buttonRef.current, { height: 48, duration: 0.2 });
     }
   }, [menuIsOpen]);
 
@@ -116,7 +126,7 @@ const NavbarMobile = () => {
       >
         <div
           className={`flex text-light items-center p-2 ${
-            menuIsOpen ? "mx-2" : ""
+            menuIsOpen ? "ml-2" : ""
           } hover:cursor-pointer`}
           onClick={toggleMenu}
         >

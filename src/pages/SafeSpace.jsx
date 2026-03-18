@@ -394,7 +394,7 @@ export default function SafeSpace() {
             ) : (
               <iframe
                 className="h-full w-full border-0"
-                src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share&hide-ui=1"
+                src="https://embed.figma.com/proto/CH7UFuZHKfsaBs0Uln36on/SafeSpace?page-id=1%3A8&node-id=3-33637&viewport=158%2C454%2C0.35&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3%3A33637&embed-host=share"
                 loading="lazy"
                 allowFullScreen
               ></iframe>
