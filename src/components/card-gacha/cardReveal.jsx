@@ -7,6 +7,7 @@ import Card from "./card";
 // and hands the actual card interaction to RevealCard.
 export default function CardReveal({ revealedCard, onSelectAnother }) {
   const overlayRef = useRef(null);
+  const revealWidth = revealedCard.orientation === "landscape" ? "520px" : "360px";
 
   useEffect(() => {
     // Fade the overlay in before the card pop animation runs.
@@ -20,21 +21,28 @@ export default function CardReveal({ revealedCard, onSelectAnother }) {
   return (
     <div
       ref={overlayRef}
+      onClick={onSelectAnother}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/70 px-6 font-figtree backdrop-blur-[2px]"
     >
-      <p className="mb-6 text-center text-xl font-semibold text-light md:text-2xl">
-        {revealedCard.name}
-      </p>
-
-      <Card card={revealedCard} />
-
-      <button
-        type="button"
-        onClick={onSelectAnother}
-        className="mx-auto mt-10 block w-full max-w-75 rounded-full bg-light py-3 text-center text-lg text-dark hover:cursor-pointer md:text-xl"
+      <div
+        onClick={(event) => event.stopPropagation()}
+        className="flex w-full flex-col items-center"
+        style={{ maxWidth: revealWidth }}
       >
-        Select Another Pack
-      </button>
+        <p className="mb-6 text-center text-xl font-semibold text-light md:text-2xl">
+          {revealedCard.name}
+        </p>
+
+        <Card card={revealedCard} />
+
+        <button
+          type="button"
+          onClick={onSelectAnother}
+          className="mx-auto mt-10 block w-full max-w-75 rounded-full bg-light py-3 text-center text-lg text-dark hover:cursor-pointer md:text-xl"
+        >
+          Select Another Pack
+        </button>
+      </div>
     </div>
   );
 }
