@@ -5,7 +5,7 @@ import Card from "./card";
 
 // The reveal overlay sits on top of the rip phase, darkens the background,
 // and hands the actual card interaction to RevealCard.
-export default function RevealPhase({ revealedCard, onSelectAnother }) {
+export default function CardReveal({ revealedCard, onSelectAnother }) {
   const overlayRef = useRef(null);
 
   useEffect(() => {

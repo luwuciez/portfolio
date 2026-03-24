@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import PackCarousel from "./card-gacha/phaseCarousel";
-import RevealPhase from "./card-gacha/phaseReveal";
-import RipPhase from "./card-gacha/phaseRip";
+import CardReveal from "./card-gacha/phaseReveal";
+import PackRip from "./card-gacha/phaseRip";
 import { PACKS } from "./card-gacha/packData";
 import {
   createRipState,
@@ -172,7 +172,7 @@ export default function CardGacha() {
   if ((phase === PHASES.rip || phase === PHASES.reveal) && selectedPack) {
     return (
       <>
-        <RipPhase
+        <PackRip
           selectedPack={selectedPack}
           ripProgress={ripProgress}
           isRipDragging={isRipDragging}
@@ -184,7 +184,7 @@ export default function CardGacha() {
 
         {/* The reveal overlay is layered on top of the rip phase once the pack opens. */}
         {phase === PHASES.reveal && revealedCard && (
-          <RevealPhase revealedCard={revealedCard} onSelectAnother={resetToCarousel} />
+          <CardReveal revealedCard={revealedCard} onSelectAnother={resetToCarousel} />
         )}
       </>
     );

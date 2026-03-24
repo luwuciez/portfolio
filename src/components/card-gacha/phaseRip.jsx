@@ -2,7 +2,7 @@ import { ACTION_BUTTON_CLASS, getPackArtwork, TEAR_Y_FRACTION } from "./sharedDa
 
 // Displays the selected pack and lets the user drag across the tear guide.
 // The parent owns the pointer logic; this component only renders the interaction surface.
-export default function RipPhase({
+export default function PackRip({
   selectedPack,
   ripProgress,
   isRipDragging,
