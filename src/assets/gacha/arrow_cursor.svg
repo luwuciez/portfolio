@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  id="Layer_3"
+  data-name="Layer 3"
+  xmlns="http://www.w3.org/2000/svg"
+  width="40"
+  height="40"
+  viewBox="0 0 645.28 487.48"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <polygon points="347.01 334.16 15 334.16 15 151.98 347.01 151.98 347.01 30.62 620.86 243.03 347.01 456.75 347.01 334.16"/>
+  <path class="cls-1" d="M362.01,61.24l234.42,181.83-234.42,182.95v-106.86H30v-152.18h332.01V61.24M332.01,0v136.98H0v212.18h332.01v138.33l48.46-37.82,234.42-182.95,30.4-23.72-30.47-23.63L380.4,37.53,332.01,0h0Z"/>
+</svg>
