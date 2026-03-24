@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
-import PackCarousel from "./card-gacha/phaseCarousel";
-import CardReveal from "./card-gacha/phaseReveal";
-import PackRip from "./card-gacha/phaseRip";
+import PackCarousel from "./card-gacha/packCarousel";
+import CardReveal from "./card-gacha/cardReveal";
+import PackRip from "./card-gacha/packRip";
+
 import { PACKS } from "./card-gacha/packData";
 import {
   createRipState,
