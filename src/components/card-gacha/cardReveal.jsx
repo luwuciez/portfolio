@@ -5,7 +5,7 @@ import Card from "./card";
 
 // The reveal overlay sits on top of the rip phase, darkens the background,
 // and hands the actual card interaction to RevealCard.
-export default function CardReveal({ revealedCard, onSelectAnother }) {
+export default function CardReveal({ revealedCard, revealedCount, totalCards, onSelectAnother }) {
   const overlayRef = useRef(null);
   const revealWidth = revealedCard.orientation === "landscape" ? "520px" : "360px";
 
@@ -29,8 +29,11 @@ export default function CardReveal({ revealedCard, onSelectAnother }) {
         className="flex w-full flex-col items-center"
         style={{ maxWidth: revealWidth }}
       >
-        <p className="mb-6 text-center text-xl font-semibold text-light md:text-2xl">
+        <p className="mb-2 text-center text-xl font-semibold text-light md:text-2xl">
           {revealedCard.name}
+        </p>
+        <p className="mb-6 text-center text-lg text-light">
+          Collected: {revealedCount}/{totalCards}
         </p>
 
         <Card card={revealedCard} />

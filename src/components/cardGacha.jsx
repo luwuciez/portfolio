@@ -24,6 +24,7 @@ export default function CardGacha() {
   const [selectedPackIndex, setSelectedPackIndex] = useState(null);
   const [ripProgress, setRipProgress] = useState(0);
   const [revealedCard, setRevealedCard] = useState(null);
+  const [revealedCardsByPack, setRevealedCardsByPack] = useState({});
   const [isRipDragging, setIsRipDragging] = useState(false);
 
   // Pointer drag details live in a ref so the component does not re-render on every move event.
@@ -33,6 +34,8 @@ export default function CardGacha() {
   const selectionStyleRef = useRef("");
 
   const selectedPack = selectedPackIndex === null ? null : PACKS[selectedPackIndex];
+  const revealedCount = selectedPack ? (revealedCardsByPack[selectedPack.id]?.length ?? 0) : 0;
+  const totalCards = selectedPack?.cards.length ?? 0;
 
   const getRipMetrics = (surfaceElement) => {
     const surfaceRect = surfaceElement.getBoundingClientRect();
@@ -100,10 +103,25 @@ export default function CardGacha() {
     if (!selectedPack) return;
 
     // Lock the rip line at 100%, then show a random card from the chosen pack.
+    const nextCard = getRandomCard(selectedPack.cards);
+    const revealedCardIndex = selectedPack.cards.indexOf(nextCard);
+
     setIsRipDragging(false);
     unlockPageSelection();
     setRipProgress(1);
-    setRevealedCard(getRandomCard(selectedPack.cards));
+    setRevealedCard(nextCard);
+    setRevealedCardsByPack((currentCardsByPack) => {
+      const revealedCards = currentCardsByPack[selectedPack.id] ?? [];
+
+      if (revealedCards.includes(revealedCardIndex)) {
+        return currentCardsByPack;
+      }
+
+      return {
+        ...currentCardsByPack,
+        [selectedPack.id]: [...revealedCards, revealedCardIndex],
+      };
+    });
     setPhase(PHASES.reveal);
   };
 
@@ -185,7 +203,12 @@ export default function CardGacha() {
 
         {/* The reveal overlay is layered on top of the rip phase once the pack opens. */}
         {phase === PHASES.reveal && revealedCard && (
-          <CardReveal revealedCard={revealedCard} onSelectAnother={resetToCarousel} />
+          <CardReveal
+            revealedCard={revealedCard}
+            revealedCount={revealedCount}
+            totalCards={totalCards}
+            onSelectAnother={resetToCarousel}
+          />
         )}
       </>
     );
