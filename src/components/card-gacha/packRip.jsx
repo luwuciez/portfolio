@@ -2,7 +2,7 @@ import { ACTION_BUTTON_CLASS, getPackArtwork, TEAR_Y_FRACTION } from "./sharedDa
 
 // Displays the selected pack and lets the user drag across the tear guide.
 // The parent owns the pointer logic; this component only renders the interaction surface.
-export default function RipPhase({
+export default function PackRip({
   selectedPack,
   ripProgress,
   isRipDragging,
@@ -13,6 +13,7 @@ export default function RipPhase({
 }) {
   return (
     <section
+      onClick={onBack}
       className="mx-auto flex w-full flex-col px-6 py-12 font-figtree text-light"
       style={{ userSelect: isRipDragging ? "none" : undefined }}
     >
@@ -21,6 +22,7 @@ export default function RipPhase({
       </p>
 
       <div
+        onClick={(event) => event.stopPropagation()}
         className="relative mx-auto w-full max-w-104 cursor-rip px-4 md:px-8"
         style={{ touchAction: "none" }}
         onPointerDown={onPointerDown}
@@ -67,7 +69,14 @@ export default function RipPhase({
       {/* Spacer keeps the back button aligned with the carousel layout below. */}
       <div className="mx-auto mt-8 h-12 w-full max-w-75" />
 
-      <button type="button" onClick={onBack} className={`${ACTION_BUTTON_CLASS} mt-6`}>
+      <button
+        type="button"
+        onClick={(event) => {
+          event.stopPropagation();
+          onBack();
+        }}
+        className={`${ACTION_BUTTON_CLASS} mt-6`}
+      >
         Back
       </button>
     </section>

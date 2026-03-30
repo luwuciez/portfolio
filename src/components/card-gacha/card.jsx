@@ -128,14 +128,16 @@ export default function Card({ card }) {
 
           {/* Back face is pre-rotated so it reads correctly after the flip. */}
           <div
-            className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-2xl bg-light p-6"
+            className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-3xl p-3 bg-linear-to-bl from-customPurple via-customBlue to-customGreen"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
-            <p className="text-center font-figtree text-base text-dark md:text-lg">{card.desc}</p>
+            <div className="h-full w-full rounded-2xl overflow-hidden flex items-center justify-center p-6 relative bg-light/50">
+              <p className="text-left font-figtree text-base text-dark md:text-lg">{card.desc}</p>
+            </div>
           </div>
         </div>
       </div>
