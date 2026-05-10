@@ -2,7 +2,9 @@ import PageTitle from "../components/pageTitle.jsx";
 import LinkButton from "../components/linkButton.jsx";
 
 import portrait from "../assets/portrait.png";
-import resume from "../assets/resume.pdf";
+
+const resume =
+  "https://drive.google.com/file/d/1JSB4e4ZlVbrF6hklgLZZ5MezG9Y0BVhK/view?usp=drive_link";
 
 export default function About() {
   return (

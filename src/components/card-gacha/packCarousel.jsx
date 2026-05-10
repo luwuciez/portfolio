@@ -103,7 +103,7 @@ export default function PackCarousel({
   return (
     <section className="mx-auto w-full px-6 py-6 font-figtree text-light">
       <p className="mx-6 my-6 text-center text-xl text-light font-bold">
-        ✨ Open a card pack to view a random artwork ✨
+        ✨ Open a card pack to view a mystery artwork ✨
       </p>
 
       <div ref={stackRef} className="relative mx-auto h-80 w-full max-w-4xl sm:h-92 md:h-120">
